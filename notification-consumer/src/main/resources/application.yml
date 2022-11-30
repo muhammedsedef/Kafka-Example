@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: notification_service
+
+couchbase:
+  notification-service:
+    config:
+      bootstrapHosts: localhost
+      notificationBucket: notification
+      notificationBucketUsername: admin
+      notificationPassword: 123456
+      queryTimeout: 300
+      kvTimeout: 5
+      connectionTimeout: 10
+
+server:
+  port: 0
+
+kafka:
+  host: localhost:9092
+  topics:
+    user-created:
+      topic: user_service.user_created.0
+      consumerGroup: ${spring.application.name}-user-created-consumer
+      replicationFactor: 1
+      retentionInMs: 604800000

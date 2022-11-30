@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: address_service
+  datasource:
+    username: example
+    password: example
+    url: jdbc:postgresql://localhost:5432/kafka_example
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 0
+
+kafka:
+  host: localhost:9092
+  topics:
+    user-created:
+      topic: user_service.user_created.0
+      consumerGroup: ${spring.application.name}-user-created-consumer
+      replicationFactor: 1
+      retentionInMs: 604800000
