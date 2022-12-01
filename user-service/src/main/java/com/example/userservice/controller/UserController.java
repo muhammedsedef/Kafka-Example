@@ -29,6 +29,7 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public UserResponse getUserAddress(@PathVariable Long userId) {
+        // You have to change user-address service port according to running port
         String url = String.format("http://localhost:8002/api/address/%s", userId);
         ResponseEntity<AddressResponseDto> address = restTemplate.getForEntity(url, AddressResponseDto.class);
 
